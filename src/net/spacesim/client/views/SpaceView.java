@@ -27,9 +27,9 @@ public class SpaceView extends View {
 	private double cameraSpeed = 1;
 
 	public SpaceView() {
-		for(int i = 0; i < 500; i++) {
+		for(int i = 0; i < 50; i++) {
 			Body body = new Earth(space, i);
-			body.pos = new Vector3(random.nextFloat() * 1000 - 500, random.nextFloat() * 1000 - 500, random.nextFloat() * 1000 - 500);
+			body.pos = new Vector3(random.nextFloat() * 10000 - 5000, random.nextFloat() * 10000 - 5000, random.nextFloat() * 1000 - 500);
 			body.vel = new Vector3(random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f);
 			space.add(body);
 		}

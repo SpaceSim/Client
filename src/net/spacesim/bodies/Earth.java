@@ -28,9 +28,7 @@ public class Earth extends Body {
 			b = 1f;
 		}
 
-		mass = 100 + SpaceView.random.nextFloat() * 1000f;
-
-		//radius = (float) Math.pow(mass, 0.5);
+		mass = 50000f + SpaceView.random.nextFloat() * 50000f;
 		radius = (float) Math.cbrt(mass/4/3/Math.PI);
 	}
 

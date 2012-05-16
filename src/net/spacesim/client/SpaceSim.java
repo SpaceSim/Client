@@ -26,7 +26,7 @@ public class SpaceSim {
 	public Vector3 cameraOrientation = new Vector3(0, 0, 0);
 	
 	public int fpsTarget = -1;
-	public int tpsTarget = 50;
+	public int tpsTarget = 24;
 	
 	private boolean running;
 	
@@ -75,7 +75,7 @@ public class SpaceSim {
 			render();
 			frames++;
 			
-			// do
+			do
 			if(System.currentTimeMillis() - lastLogic > logicClock) {
 				long renderTimeFix = System.currentTimeMillis() - lastLogic - logicClock;
 				
@@ -89,7 +89,7 @@ public class SpaceSim {
 				lastLogic = System.currentTimeMillis();
 				ticks++;
 			}
-			// while(logicClock < 0);
+			while(logicClock < 0);
 			
 			if(System.currentTimeMillis() - lastFPS > 1000) {
 				fps = frames;
