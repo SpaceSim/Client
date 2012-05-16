@@ -87,7 +87,7 @@ public class SpaceView extends View {
 		if(Keyboard.isKeyDown(Keyboard.KEY_1) && cameraSpeed > 0) cameraSpeed /= 1.25;
 		else if(Keyboard.isKeyDown(Keyboard.KEY_2)) cameraSpeed *= 1.25;
 
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_Z)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
 		
@@ -95,7 +95,7 @@ public class SpaceView extends View {
 			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
 
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_Q)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().right()).mul(cameraSpeed));
 		}
 		
