@@ -7,7 +7,7 @@ import org.lwjgl.util.glu.Sphere;
 import net.spacesim.client.Body;
 import net.spacesim.client.Space;
 import net.spacesim.client.SpaceSim;
-import net.spacesim.client.SpaceView;
+import net.spacesim.client.views.SpaceView;
 
 public class Earth extends Body {
 

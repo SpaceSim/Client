@@ -1,10 +1,14 @@
-package net.spacesim.client;
+package net.spacesim.client.views;
 
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.Random;
 
 import net.spacesim.bodies.Earth;
+import net.spacesim.client.Body;
+import net.spacesim.client.Space;
+import net.spacesim.client.SpaceSim;
+import net.spacesim.client.View;
 import net.spacesim.util.Vector3;
 
 import org.lwjgl.input.Keyboard;

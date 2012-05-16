@@ -5,6 +5,7 @@ import static org.lwjgl.util.glu.GLU.*;
 
 import java.nio.FloatBuffer;
 
+import net.spacesim.client.views.SpaceView;
 import net.spacesim.util.Vector2;
 import net.spacesim.util.Vector3;
 
