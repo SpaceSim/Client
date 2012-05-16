@@ -32,13 +32,13 @@ public abstract class Body {
 				continue;
 			double distanceSquared = pos.distanceSquared(body.pos);
 
-			// if(distanceSquared > Math.pow(body.radius + radius, 2)) {
+			//if(distanceSquared > Math.pow(body.radius + radius, 2)) {
 			Vector3 diff = pos.clone().sub(body.pos);
 			vel.add((diff.div(-100000).div(distanceSquared).mul(body.mass)));
-			/*
-			 * } else if(mass > body.mass) { space.remove(body); mass +=
-			 * body.mass/8; radius = (float) Math.cbrt(mass/4/3/Math.PI); }
-			 */
+			//
+			//  } else if(mass > body.mass) { space.remove(body); mass +=
+			//  body.mass/8; radius = (float) Math.cbrt(mass/4/3/Math.PI); }
+			 
 		}
 		pos.add(vel);
 	}

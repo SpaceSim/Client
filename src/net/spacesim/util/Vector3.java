@@ -53,14 +53,14 @@ public class Vector3 {
 		return this;
 	}
 
-	public Vector3 right()  {
+	public Vector3 right() {
 		Vector3 up = new Vector3(0, -1, 0);
 		return normalize().cross(up.normalize());
 	}
 	
-	public Vector3 up()  {
-		Vector3 up = new Vector3(1, 0, 0);
-		return normalize().cross(up.normalize());
+	public Vector3 up() {
+		Vector3 right = new Vector3(1, 0, 0);
+		return normalize().cross(right.normalize());
 	}
 
 	public Vector3 add(Vector3 v) {

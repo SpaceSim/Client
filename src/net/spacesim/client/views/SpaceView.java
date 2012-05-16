@@ -19,15 +19,13 @@ public class SpaceView extends View {
 	public final static Random random = new Random();
 
 	private Space space = new Space();
-	private int lastMouseX;
-	private int lastMouseY;
 
 	float rtri;
 
 	private double cameraSpeed = 1;
 
 	public SpaceView() {
-		for(int i = 0; i < 50; i++) {
+		for(int i = 0; i < 100; i++) {
 			Body body = new Earth(space, i);
 			body.pos = new Vector3(random.nextFloat() * 10000 - 5000, random.nextFloat() * 10000 - 5000, random.nextFloat() * 1000 - 500);
 			body.vel = new Vector3(random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f);
@@ -84,9 +82,6 @@ public class SpaceView extends View {
 		SpaceSim.instance.cameraOrientation.y -= Mouse.getDX() * 0.1;
 		SpaceSim.instance.cameraOrientation.x += Mouse.getDY() * 0.1;
 
-		if(Keyboard.isKeyDown(Keyboard.KEY_1) && cameraSpeed > 0) cameraSpeed /= 1.25;
-		else if(Keyboard.isKeyDown(Keyboard.KEY_2)) cameraSpeed *= 1.25;
-
 		if(Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_Z)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
@@ -110,13 +105,6 @@ public class SpaceView extends View {
 		if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().up()).mul(cameraSpeed));
 		}
-		
-		if(Keyboard.isKeyDown(Keyboard.KEY_HOME)) {
-			SpaceSim.instance.cameraPosition = new Vector3();
-		}
-
-		lastMouseX = Mouse.getX();
-		lastMouseY = Mouse.getY();
 	}
 
 	@Override
@@ -126,16 +114,10 @@ public class SpaceView extends View {
 	}
 
 	@Override
-	public void onMouseDown() {
-		// TODO Auto-generated method stub
-
-	}
+	public void onMouseDown(int button) { }
 
 	@Override
-	public void onMouseUp() {
-		// TODO Auto-generated method stub
-
-	}
+	public void onMouseUp(int button) { }
 
 	@Override
 	public void onMouseScroll(int scrollAmount) {
@@ -153,21 +135,20 @@ public class SpaceView extends View {
 	}
 
 	@Override
-	public void onMouseMove() {
-		// TODO Auto-generated method stub
+	public void onMouseMove() { }
 
+	@Override
+	public void onKeyDown(char c, int key) {
+		if(key == Keyboard.KEY_Q) {
+			cameraSpeed /= 1.5;
+		} else if(key == Keyboard.KEY_E) {
+			cameraSpeed *= 1.5;
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_HOME)) {
+			SpaceSim.instance.cameraPosition = new Vector3();
+		}
 	}
 
 	@Override
-	public void onKeyDown() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onKeyUp() {
-		// TODO Auto-generated method stub
-
-	}
+	public void onKeyUp(char c, int key) { }
 
 }
