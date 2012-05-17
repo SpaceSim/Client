@@ -9,10 +9,13 @@ import net.spacesim.client.Body;
 import net.spacesim.client.Space;
 import net.spacesim.client.SpaceSim;
 import net.spacesim.client.View;
+import net.spacesim.util.Font;
 import net.spacesim.util.Vector3;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+import static net.spacesim.util.DrawUtils.*;
 
 public class SpaceView extends View {
 
@@ -21,6 +24,8 @@ public class SpaceView extends View {
 	private Space space = new Space();
 
 	float rtri;
+
+	private boolean debug = true;
 
 	private double cameraSpeed = 1;
 
@@ -74,6 +79,26 @@ public class SpaceView extends View {
 		glPopMatrix();
 		space.render();
 
+		int width = (int) SpaceSim.instance.getDisplaySize().x;
+		int height = (int) SpaceSim.instance.getDisplaySize().y;
+		Font font = getFont("Calibri Regular");
+
+		if(debug) {
+			glPushMatrix();
+			{
+				enableOrthoViewport(width, height);
+				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+				font.drawStringWithShadow("FPS: " + SpaceSim.instance.getFPS(), width - 250, height - 95, 0xffffffff);
+				font.drawStringWithShadow("TPS: " + SpaceSim.instance.getTPS(), width - 250, height - 80, 0xffffffff);
+				font.drawStringWithShadow("Number of Bodies: " + space.bodyCount, width - 250, height - 65, 0xffffffff);
+				font.drawStringWithShadow("Camera Speed: " + cameraSpeed, width - 250, height - 50, 0xffffffff);
+				font.drawStringWithShadow("Camera Pos: " + SpaceSim.instance.cameraPosition.clone().round(), width - 250, height - 35, 0xffffffff);
+				font.drawStringWithShadow("Camera Orientation: " + SpaceSim.instance.cameraOrientation.clone().round(), width - 250, height - 20, 0xffffffff);
+				glDisable(GL_TEXTURE_2D);
+			}
+			glPopMatrix();
+		}
+
 		/*if(Mouse.isButtonDown(0)) {
 			SpaceSim.instance.cameraOrientation.y -= (Mouse.getX() - lastMouseX) * 0.1;
 			SpaceSim.instance.cameraOrientation.x -= (lastMouseY - Mouse.getY()) * 0.1;
@@ -85,7 +110,7 @@ public class SpaceView extends View {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_Z)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
-		
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
@@ -93,7 +118,7 @@ public class SpaceView extends View {
 		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_Q)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().right()).mul(cameraSpeed));
 		}
-		
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel().right()).mul(cameraSpeed));
 		}
@@ -101,7 +126,7 @@ public class SpaceView extends View {
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel().up()).mul(cameraSpeed));
 		}
-		
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().up()).mul(cameraSpeed));
 		}
@@ -145,6 +170,8 @@ public class SpaceView extends View {
 			cameraSpeed *= 1.5;
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_HOME)) {
 			SpaceSim.instance.cameraPosition = new Vector3();
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_SLASH)) {
+			debug = !debug;
 		}
 	}
 

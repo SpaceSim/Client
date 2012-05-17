@@ -6,6 +6,7 @@ import static org.lwjgl.util.glu.GLU.*;
 import java.nio.FloatBuffer;
 
 import net.spacesim.client.views.SpaceView;
+import net.spacesim.util.DrawUtils;
 import net.spacesim.util.Vector2;
 import net.spacesim.util.Vector3;
 
@@ -95,7 +96,6 @@ public class SpaceSim {
 
 			if(System.currentTimeMillis() - lastFPS > 1000) {
 				fps = frames;
-				Display.setTitle("SpaceSim v1.0 - Prototype - " + fps + " fps" + " - " + tps + " tps");
 				frames = 0;
 				lastFPS = System.currentTimeMillis();
 			}
@@ -103,7 +103,6 @@ public class SpaceSim {
 
 			if(System.currentTimeMillis() - lastTPS > 1000) {
 				tps = ticks;
-				Display.setTitle("SpaceSim v1.0 - Prototype - " + fps + " fps" + " - " + tps + " tps");
 				ticks = 0;
 				lastTPS = System.currentTimeMillis();
 			}
@@ -153,45 +152,10 @@ public class SpaceSim {
 			}
 		}
 	}
-
+	
 	private void initGL() {
-		//glEnable(GL_TEXTURE_2D);
-		glShadeModel(GL_SMOOTH);
-
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClearDepth(1.0);
-
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-		/*initLightArrays();
-
-
-		glMaterial(GL_FRONT, GL_SPECULAR, matSpecular); // sets specular
-														// material color
-
-		glMaterialf(GL_FRONT, GL_SHININESS, 50.0f); // sets shininess
-
-		glLight(GL_LIGHT0, GL_POSITION, lightPosition); // sets light position
-
-		glLight(GL_LIGHT0, GL_SPECULAR, whiteLight); // sets specular light to
-														// white
-
-		glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight); // sets diffuse light to
-													// white
-
-		glLightModel(GL_LIGHT_MODEL_AMBIENT, lModelAmbient); // global ambient
-																// light
-
-		glEnable(GL_LIGHTING); // enables lighting
-
-		glEnable(GL_LIGHT0); // enables light0
-
-		glEnable(GL_COLOR_MATERIAL); // enables opengl to use glColor3f to
-										// define material color
-
-		glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);*/
+		DrawUtils.setup();
+		DrawUtils.enableFrustumViewport();
 	}
 
 	public void render() {

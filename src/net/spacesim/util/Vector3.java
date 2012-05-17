@@ -136,4 +136,11 @@ public class Vector3 {
 		return new Vector3(this);
 	}
 
+	public Vector3 round() {
+		this.x = (long) this.x;
+		this.y = (long) this.y;
+		this.z = (long) this.z;
+		return this;
+	}
+
 }
