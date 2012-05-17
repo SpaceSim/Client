@@ -41,6 +41,7 @@ public class Space {
 
 	public void remove(Body body) {
 		bodies[body.position] = null;
+		bodyCount--;
 	}
 
 }

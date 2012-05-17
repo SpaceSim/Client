@@ -124,11 +124,11 @@ public class SpaceView extends View {
 		}
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel().up()).mul(cameraSpeed));
+			SpaceSim.instance.cameraPosition.add(new Vector3(0, cameraSpeed, 0));
 		}
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
-			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().up()).mul(cameraSpeed));
+			SpaceSim.instance.cameraPosition.sub(new Vector3(0, cameraSpeed, 0));
 		}
 	}
 
