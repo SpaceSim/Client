@@ -19,8 +19,9 @@ public class Sun extends Body {
 	
 	public Sun(Space space) {
 		super(space);
-		mass = 1.98892d * Math.pow(10, 33);
-		radius = Math.cbrt(mass/4/3/Math.PI);
+		
+		mass = 1988435000000000000000000000000d;
+		radius = 695500000;
 		System.out.println(radius);
 	}
 

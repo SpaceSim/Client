@@ -23,11 +23,11 @@ public class SpaceSim {
 
 	public View view = new SpaceView();
 
-	public Vector3 cameraPosition = new Vector3(0, 0, 0.1);
+	public Vector3 cameraPosition = new Vector3(0, 0, 151300000000d);
 	public Vector3 cameraOrientation = new Vector3(0, 0, 0);
 
 	public int fpsTarget = -1;
-	public int tpsTarget = 24;
+	public int tpsTarget = 1000;
 
 	private boolean running;
 
@@ -174,7 +174,7 @@ public class SpaceSim {
 		glLoadIdentity();
 
 		aspectRatio = displaySize.x / displaySize.y;
-		gluPerspective(45.0f, (float)aspectRatio, 0.1f, 10000.0f);
+		gluPerspective(45.0f, (float)aspectRatio, 0.1f, Float.MAX_VALUE);
 
 		cameraOrientation.toAngle();
 		//System.out.println(cameraOrientation);
