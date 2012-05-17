@@ -14,8 +14,8 @@ public class Earth extends Body {
 	private float r, g, b;
 	private Sphere sphere = new Sphere();
 
-	public Earth(Space space, int position) {
-		super(space, position);
+	public Earth(Space space) {
+		super(space);
 
 		float color = SpaceView.random.nextFloat();
 		if (SpaceView.random.nextBoolean()) {
@@ -45,7 +45,7 @@ public class Earth extends Body {
 			quality = (int)((float)quality / 20.0 * radius);
 			
 			glColor3f(r, g, b);
-			sphere.draw(radius, quality, quality);
+			sphere.draw((float) radius, quality, quality);
 		}
 		glPopMatrix();
 	}

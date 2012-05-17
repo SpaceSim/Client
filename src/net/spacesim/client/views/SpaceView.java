@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 import java.util.Random;
 
 import net.spacesim.bodies.Earth;
+import net.spacesim.bodies.Sun;
 import net.spacesim.client.Body;
 import net.spacesim.client.Space;
 import net.spacesim.client.SpaceSim;
@@ -30,12 +31,14 @@ public class SpaceView extends View {
 	private double cameraSpeed = 1;
 
 	public SpaceView() {
-		for(int i = 0; i < 100; i++) {
+		/*for(int i = 0; i < 100; i++) {
 			Body body = new Earth(space, i);
 			body.pos = new Vector3(random.nextFloat() * 10000 - 5000, random.nextFloat() * 10000 - 5000, random.nextFloat() * 1000 - 500);
 			body.vel = new Vector3(random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f, random.nextFloat() * 0.01f - 0.005f);
 			space.add(body);
-		}
+		}*/
+		
+		Sun sun = new Sun(space);
 	}
 
 	@Override
@@ -115,7 +118,7 @@ public class SpaceView extends View {
 			SpaceSim.instance.cameraPosition.add((SpaceSim.instance.cameraOrientation.clone().toVel()).mul(cameraSpeed));
 		}
 
-		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			SpaceSim.instance.cameraPosition.sub((SpaceSim.instance.cameraOrientation.clone().toVel().right()).mul(cameraSpeed));
 		}
 

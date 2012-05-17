@@ -4,22 +4,23 @@ import net.spacesim.util.Vector3;
 
 public abstract class Body {
 
-	protected float mass;
+	public double mass;
 
-	public float radius;
+	public double radius;
 
 	public Vector3 pos;
 	public Vector3 vel;
 
-	protected Space space;
+	public Space space;
 
 	public int position;
 
-	public Body(Space space, int position) {
-		this.setSpace(space);
+	public Body(Space space) {
+		this.space = space;
+		position = space.bodyCount;
+		space.add(this);
 		pos = new Vector3();
 		vel = new Vector3();
-		this.position = position;
 	}
 
 	public abstract void render();
@@ -38,33 +39,8 @@ public abstract class Body {
 			//
 			//  } else if(mass > body.mass) { space.remove(body); mass +=
 			//  body.mass/8; radius = (float) Math.cbrt(mass/4/3/Math.PI); }
-			 
 		}
 		pos.add(vel);
-	}
-
-	public void setMass(float mass) {
-		this.mass = mass;
-	}
-
-	public float getMass() {
-		return mass;
-	}
-
-	public void setSpace(Space space) {
-		this.space = space;
-	}
-
-	public Space getSpace() {
-		return space;
-	}
-
-	public Vector3 getVel() {
-		return vel;
-	}
-
-	public void setVel(Vector3 vel) {
-		this.vel = vel;
 	}
 
 }
