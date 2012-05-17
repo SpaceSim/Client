@@ -36,6 +36,8 @@ public class SpaceSim {
 
 	private int fps = 0;
 	private int tps = 0;
+	
+	private long time;
 
 	// Lighting test START
 	private FloatBuffer matSpecular;
@@ -200,6 +202,7 @@ public class SpaceSim {
 	}
 
 	public void update() {
+		time++;
 		view.tick();
 	}
 
@@ -237,6 +240,10 @@ public class SpaceSim {
 
 	public int getTPS() {
 		return tps;
+	}
+	
+	public long getTime() {
+		return time;
 	}
 
 	public static void main(String[] args) throws Exception {

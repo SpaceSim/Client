@@ -10,6 +10,7 @@ import net.spacesim.client.Body;
 import net.spacesim.client.Space;
 import net.spacesim.client.SpaceSim;
 import net.spacesim.client.View;
+import net.spacesim.util.DateTimeUtils;
 import net.spacesim.util.Font;
 import net.spacesim.util.Vector3;
 
@@ -91,12 +92,16 @@ public class SpaceView extends View {
 			{
 				enableOrthoViewport(width, height);
 				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-				font.drawStringWithShadow("FPS: " + SpaceSim.instance.getFPS(), width - 250, height - 95, 0xffffffff);
-				font.drawStringWithShadow("TPS: " + SpaceSim.instance.getTPS(), width - 250, height - 80, 0xffffffff);
-				font.drawStringWithShadow("Number of Bodies: " + space.bodyCount, width - 250, height - 65, 0xffffffff);
-				font.drawStringWithShadow("Camera Speed: " + cameraSpeed, width - 250, height - 50, 0xffffffff);
-				font.drawStringWithShadow("Camera Pos: " + SpaceSim.instance.cameraPosition.clone().round(), width - 250, height - 35, 0xffffffff);
-				font.drawStringWithShadow("Camera Orientation: " + SpaceSim.instance.cameraOrientation.clone().round(), width - 250, height - 20, 0xffffffff);
+				font.drawStringWithShadow("FPS: " + SpaceSim.instance.getFPS(), 8, 8, 0xffffffff);
+				
+				font.drawStringWithShadow("Date: " + DateTimeUtils.getDateString(SpaceSim.instance.getTime()), 8, height - 125, 0xffffffff);
+				font.drawStringWithShadow("Time: " + DateTimeUtils.getTimeString(SpaceSim.instance.getTime()), 8, height - 110, 0xffffffff);
+				font.drawStringWithShadow("FPS: " + SpaceSim.instance.getFPS(), 8, height - 95, 0xffffffff);
+				font.drawStringWithShadow("TPS: " + SpaceSim.instance.getTPS(), 8, height - 80, 0xffffffff);
+				font.drawStringWithShadow("Number of Bodies: " + space.bodyCount, 8, height - 65, 0xffffffff);
+				font.drawStringWithShadow("Camera Speed: " + cameraSpeed, 8, height - 50, 0xffffffff);
+				font.drawStringWithShadow("Camera Pos: " + SpaceSim.instance.cameraPosition.clone().round(), 8, height - 35, 0xffffffff);
+				font.drawStringWithShadow("Camera Orientation: " + SpaceSim.instance.cameraOrientation.clone().round(), 8, height - 20, 0xffffffff);
 				glDisable(GL_TEXTURE_2D);
 			}
 			glPopMatrix();
